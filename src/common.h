@@ -1,9 +1,16 @@
-#pragma once
+#ifndef GBLAS_COMMON_H
+#define GBLAS_COMMON_H
 
 #include <cassert>
 #include <cstdint>
 
 namespace gblas {
+
+ enum class gStatus
+ {
+    gBLAS_PASS,
+    gBLAS_FAIL
+ };
 
 #define MAX_DIM 5
 using TSizeArr = std::array<uint64_t, MAX_DIM>;
@@ -25,7 +32,7 @@ enum class DType
     dtypeNR
 };
 
-unsigned getSingleElementSizeInBytes(DType dtype)
+inline unsigned getSingleElementSizeInBytes(DType dtype)
 {
     switch(dtype)
     {
@@ -54,6 +61,18 @@ unsigned getSingleElementSizeInBytes(DType dtype)
     return 0;
 }
 
+enum class Layout
+{
+    RowMajor,
+    ColMajor,
+    LayoutNR
+};
+
+using Coordinates = std::array<unsigned, MAX_DIM>;
+
+
 } // namespace gblas
+
+#endif //GBLAS_COMMON_H
 
 

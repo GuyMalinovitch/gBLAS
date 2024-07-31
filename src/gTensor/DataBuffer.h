@@ -1,6 +1,7 @@
 #ifndef GBLAS_DATABUFFER_H
 #define GBLAS_DATABUFFER_H
 #include <cstdint>
+#include <cstring>
 
 namespace gblas {
 using byte = uint8_t;
@@ -15,10 +16,16 @@ public:
     DataBuffer& operator=(const DataBuffer& other);
     DataBuffer(DataBuffer&& other) noexcept;
     DataBuffer& operator=(DataBuffer&& other) noexcept;
-
-    byte* operator[](int i) {return &m_buffer[i];}
-    const byte* operator[](int i) const {return &m_buffer[i];}
-    std::string getInfo();
+    bool operator==(const DataBuffer& other) const
+    {
+        return (m_size == other.m_size) && (std::memcmp(m_buffer, other.m_buffer, m_size) == 0);
+    }
+    bool operator!=(const DataBuffer& other) const
+    {
+        return !operator==(other);
+    }
+    byte* operator[](unsigned i) {return &m_buffer[i];}
+    const byte* operator[](unsigned i) const {return &m_buffer[i];}
 private:
     bool shouldFreeOnDtor = false;
     byte* m_buffer = nullptr;

@@ -7,11 +7,10 @@ project(gBLAS
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(src)
-
-add_library(gBLAS SHARED src/gTensor/DataBuffer.cpp
-                         src/gTensor/DataBuffer.h
-                         src/gTensor/gTensor.cpp
-                         src/gTensor/gTensor.h)
+set(src_files ${CMAKE_SOURCE_DIR}/src/gTensor/DataBuffer.cpp
+              ${CMAKE_SOURCE_DIR}/src/gTensor/gTensor.cpp
+              ${CMAKE_SOURCE_DIR}/src/operations/axpy.cpp src/gTensor/gTensorIterator.cpp src/gTensor/gTensorIterator.h)
+add_library(gBLAS SHARED ${src_files})
+target_include_directories(gBLAS PUBLIC ${CMAKE_SOURCE_DIR}/src)
 
 add_subdirectory(tests)
