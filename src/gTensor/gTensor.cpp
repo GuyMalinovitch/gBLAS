@@ -5,9 +5,14 @@
 
 namespace gblas {
 
-gTensor::gTensor(TSizeArr sizes, TStrideArr strides, unsigned int rank, DType dtype, Layout layout)
+gTensor::gTensor(TSizeArr sizes, TStrideArr strides, unsigned int rank, DType dtype, Layout layout, byte* data)
        : m_sizes(sizes), m_strides(strides), m_rank(rank), m_dtype(dtype), m_layout(layout)
-{}
+{
+    if (data)
+    {
+        initData(data);
+    }
+}
 
 void gTensor::initData(void* data)
 {

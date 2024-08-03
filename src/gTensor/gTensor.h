@@ -13,7 +13,7 @@ class gTensor
 {
 public:
     gTensor() = default;
-    gTensor(TSizeArr sizes, TStrideArr strides, unsigned rank, DType dtype, Layout layout = Layout::RowMajor);
+    gTensor(TSizeArr sizes, TStrideArr strides, unsigned rank, DType dtype, Layout layout = Layout::RowMajor, byte* data = nullptr);
     ~gTensor() = default;
     gTensor(const gTensor& other) = default;
     bool operator==(const gTensor& other) const = default;
