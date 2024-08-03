@@ -8,7 +8,7 @@
 namespace gblas {
 
 template<typename T>
-gStatus Operations::axpy(uint64_t a, const GTensor &x, const GTensor &y, GTensor &out, bool transposeX, bool transposeY)
+gStatus Operations::axpy(uint64_t a, const gTensor &x, const gTensor &y, gTensor &out, bool transposeX, bool transposeY)
 {
     // validate inputs;
     // perform operation

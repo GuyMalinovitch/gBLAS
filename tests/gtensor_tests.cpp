@@ -8,10 +8,10 @@ class GTensorTest : public testing::Test
 public:
     void allocateTensor(TSizeArr sizes, TStrideArr strides, unsigned rank, DType dtype)
     {
-        tensor = GTensor{sizes, strides, rank, dtype};
+        tensor = gTensor{sizes, strides, rank, dtype};
     }
 protected:
-    GTensor tensor;
+    gTensor tensor;
 };
 
 TEST_F(GTensorTest, creation_dense_bf16)

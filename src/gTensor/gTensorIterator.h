@@ -10,7 +10,7 @@ namespace gblas
 class gTensorIterator
 {
 public:
-    explicit gTensorIterator(GTensor& tensor) : m_tensor(tensor),
+    explicit gTensorIterator(gTensor& tensor) : m_tensor(tensor),
                                                 m_totalNumOfElements(tensor.getTotalSizeInElements()) {}
     ~gTensorIterator() = default;
     gTensorIterator(const gTensorIterator& other) : m_tensor(other.m_tensor)
@@ -74,7 +74,7 @@ public:
         }
      }
 private:
-    GTensor& m_tensor;
+    gTensor& m_tensor;
     uint64_t m_currentIndex = 0;
     uint64_t m_totalNumOfElements = 0;
 };

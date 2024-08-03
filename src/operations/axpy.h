@@ -5,7 +5,7 @@
 #include <cstdint>
 
 namespace gblas {
-class GTensor;
+class gTensor;
 enum class gStatus;
 
 class Operations
@@ -16,7 +16,7 @@ public:
     // Level 1 operations //
     // perform a*X+Y operation
     template<typename T>
-    gStatus axpy(uint64_t a, const GTensor& x, const GTensor& y, GTensor& out, bool transposeX = false, bool transposeY = false);
+    gStatus axpy(uint64_t a, const gTensor& x, const gTensor& y, gTensor& out, bool transposeX = false, bool transposeY = false);
 };
 
 

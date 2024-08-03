@@ -9,15 +9,15 @@
 namespace gblas {
 class gTensorIterator;
 
-class GTensor
+class gTensor
 {
 public:
-    GTensor() = default;
-    GTensor(TSizeArr sizes, TStrideArr strides, unsigned rank, DType dtype, Layout layout = Layout::RowMajor);
-    ~GTensor() = default;
-    GTensor(const GTensor& other) = default;
-    bool operator==(const GTensor& other) const = default;
-    bool operator!=(const GTensor& other) const = default;
+    gTensor() = default;
+    gTensor(TSizeArr sizes, TStrideArr strides, unsigned rank, DType dtype, Layout layout = Layout::RowMajor);
+    ~gTensor() = default;
+    gTensor(const gTensor& other) = default;
+    bool operator==(const gTensor& other) const = default;
+    bool operator!=(const gTensor& other) const = default;
     byte* operator[](int offset);
     byte* operator[](Coordinates coords);
     void initData(void* data);

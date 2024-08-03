@@ -5,16 +5,16 @@
 
 namespace gblas {
 
-GTensor::GTensor(TSizeArr sizes, TStrideArr strides, unsigned int rank, DType dtype, Layout layout)
+gTensor::gTensor(TSizeArr sizes, TStrideArr strides, unsigned int rank, DType dtype, Layout layout)
        : m_sizes(sizes), m_strides(strides), m_rank(rank), m_dtype(dtype), m_layout(layout)
 {}
 
-void GTensor::initData(void* data)
+void gTensor::initData(void* data)
 {
     m_buffer = {getMemorySizeInBytes(), (byte*)data};
 }
 
-uint64_t GTensor::getTotalSizeInElements() const
+uint64_t gTensor::getTotalSizeInElements() const
 {
     uint64_t totalSize = 1;
     for (unsigned i = 0; i < getRank(); i++)
@@ -24,7 +24,7 @@ uint64_t GTensor::getTotalSizeInElements() const
     return totalSize;
 }
 
-uint64_t GTensor::getMemorySizeInBytes() const
+uint64_t gTensor::getMemorySizeInBytes() const
 {
     if (m_sizes.empty()) return 0;
     // calculate the max offset available
@@ -37,18 +37,18 @@ uint64_t GTensor::getMemorySizeInBytes() const
     return (max_offset + 1) * getSingleElementSizeInBytes(getDType());
 }
 
-gTensorIterator GTensor::getIterator()
+gTensorIterator gTensor::getIterator()
 {
     return gTensorIterator(*this);
 }
 
-byte *GTensor::operator[](int offset)
+byte *gTensor::operator[](int offset)
 {
     uint64_t offsetInBytes = offset * getSingleElementSizeInBytes(getDType());
     return m_buffer[offsetInBytes];
 }
 
-byte *GTensor::operator[](Coordinates coords)
+byte *gTensor::operator[](Coordinates coords)
 {
     uint64_t offsetInElements = 0;
     if (coords.size() != getRank()) throw std::invalid_argument("Coordinates should have the same rank as the tensor");
